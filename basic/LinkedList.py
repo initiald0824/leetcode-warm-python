@@ -42,12 +42,21 @@ class LinkList(object):
         return length
 
     def reverse(self):
-        pass
+        if not self.head or not self.head.next:
+            return self.head
+        p = self.head
+        prev = None
+        while p:
+            next_node = p.next
+            p.next = prev
+            prev = p
+            p = next_node
+        self.head = prev
 
 
 if __name__ == '__main__':
     link_list = LinkList()
-    link_list.init_list_tail([1, 2, 3])
+    link_list.init_list_tail([1, 2, 3, 4, 5, 6])
     link_list.print_list()
     link_list.reverse()
     link_list.print_list()
