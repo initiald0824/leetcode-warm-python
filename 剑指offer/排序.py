@@ -70,7 +70,20 @@ def select_sort(nums):
         i += 1
 
 
+# 归并排序
+def merge_sort(nums):
+    pass
+
+
+def merge_sort_func(nums, start, end, res):
+    pass
+
+
+def merge_sort_array(nums, start, end, res):
+    pass
+
+
 if __name__ == '__main__':
-    array = [11, 12, 4, 16, 8, 2]
+    array = [11, 12, 4, 16, 8, 2, 13, 12, 15]
     select_sort(array)
     print(array)
