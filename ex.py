@@ -3,6 +3,6 @@
 # @Author initiald0824
 # @Time 2019/8/11 13:45
 
-
-l = ['A', 'D', 'X', 'S']
-print(l.index('D'))
+l_range = range(2+1)[::-1]
+for i in l_range:
+    print(i)

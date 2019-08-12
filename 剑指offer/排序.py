@@ -26,7 +26,51 @@ def quick_sort(nums, start, end):
         quick_sort(nums, i + 1, end)
 
 
+# 堆排序 建堆 下沉 堆排序
+def build_heap(nums):
+    l_range = range(int(len(nums)/2))[::-1]
+    for i in l_range:
+        percolate_down(nums, i, len(nums))
+
+
+def percolate_down(nums, index, size):
+    while index*2+1 < size:
+        min_index = index*2 + 1
+        if index*2+2 < size and nums[index*2+2] < nums[min_index]:
+            min_index = index * 2 + 2
+        if nums[index] > nums[min_index]:
+            nums[index], nums[min_index] = nums[min_index], nums[index]
+            index = min_index
+        else:
+            break
+
+
+def heap_sort(nums):
+    build_heap(nums)
+    nums_size = len(nums)
+    index = nums_size - 1
+    while index > 0:
+        nums[0], nums[index] = nums[index], nums[0]
+        nums_size -= 1
+        index -= 1
+        percolate_down(nums, 0, nums_size)
+
+
+# 选择排序
+def select_sort(nums):
+    i = 0
+    while i < len(nums):
+        min_index = i
+        j = i + 1
+        while j < len(nums):
+            if nums[j] < nums[min_index]:
+                min_index = j
+            j += 1
+        nums[i], nums[min_index] = nums[min_index], nums[i]
+        i += 1
+
+
 if __name__ == '__main__':
     array = [11, 12, 4, 16, 8, 2]
-    quick_sort(array, 0, len(array) - 1)
+    select_sort(array)
     print(array)
