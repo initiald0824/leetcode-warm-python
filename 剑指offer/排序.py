@@ -72,18 +72,46 @@ def select_sort(nums):
 
 # 归并排序
 def merge_sort(nums):
-    pass
+    res = [None] * len(nums)
+    merge_sort_func(nums, 0, len(nums)-1, res)
 
 
 def merge_sort_func(nums, start, end, res):
-    pass
+    if start < end:
+        mid = int((start + end)/2)
+        merge_sort_func(nums, start, mid, res)
+        merge_sort_func(nums, mid+1, end, res)
+        merge_sort_array(nums, start, mid, end, res)
 
 
-def merge_sort_array(nums, start, end, res):
-    pass
+def merge_sort_array(nums, start, mid, end, res):
+    i = start
+    j = mid + 1
+    m = mid
+    k = 0
+    while i <= m and j <= end:
+        if nums[i] < nums[j]:
+            res[k] = nums[i]
+            i += 1
+        else:
+            res[k] = nums[j]
+            j += 1
+        k += 1
+
+    while i <= m:
+        res[k] = nums[i]
+        i += 1
+        k += 1
+    while j <= end:
+        res[k] = nums[j]
+        j += 1
+        k += 1
+
+    for i in range(k):
+        nums[start+i] = res[i]
 
 
 if __name__ == '__main__':
     array = [11, 12, 4, 16, 8, 2, 13, 12, 15]
-    select_sort(array)
+    merge_sort(array)
     print(array)
