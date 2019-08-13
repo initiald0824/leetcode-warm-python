@@ -34,11 +34,11 @@ def get_rotate_min(nums):
         if lo == hi - 1:
             mid = hi
             break
-        if nums[mid] == nums[lo] and nums[lo] == nums[hi]:
+        elif nums[lo] == nums[hi] == nums[mid]:
             return min(nums)
         elif nums[mid] >= nums[lo]:
             lo = mid
-        elif nums[mid] <= nums[hi]:
+        elif nums[hi] >= nums[mid]:
             hi = mid
     return nums[mid]
 
