@@ -11,18 +11,41 @@
 #       /  \
 #      5   12
 #     /\
-#    4 7
+#    4  7
 
 from basic.BinaryTree import TreeNode
+import copy
 
 
-def get_tree_target_path(root):
-    pass
+def get_tree_target_path(root, target):
+    path = []
+    res = []
+    if root is None:
+        return res
+    get_tree_target_path_func(root, path, res, target)
+    return res
 
 
-def get_tree_target_path_func(node, path, res):
-    pass
+def get_tree_target_path_func(node, path, res, target):
+    if node.left is None and node.right is None:
+        path.append(node.data)
+        if sum(path) == target:
+            res.append(copy.deepcopy(path))
+        path.pop()
+    if node.left:
+        path.append(node.data)
+        get_tree_target_path_func(node.left, path, res, target)
+        path.pop()
+    if node.right:
+        path.append(node.data)
+        get_tree_target_path_func(node.right, path, res, target)
+        path.pop()
 
 
 if __name__ == '__main__':
-    pass
+    node_4 = TreeNode(4, None, None)
+    node_7 = TreeNode(7, None, None)
+    node_5 = TreeNode(5, node_4, node_7)
+    node_12 = TreeNode(12, None, None)
+    node_root = TreeNode(10, node_5, node_12)
+    print(get_tree_target_path(node_root, 22))
