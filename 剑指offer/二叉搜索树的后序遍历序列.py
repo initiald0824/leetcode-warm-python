@@ -14,9 +14,28 @@
 # 如果输入的数组是{7, 4, 6, 5},由于没有哪棵二叉搜索树的后序遍历的结果是这个序列，所以返回false
 
 
-def is_post_order(nums):
-    pass
+def is_post_order(nums, start, end):
+    if not nums or end < start:
+        return False
+    if start == end:
+        return True
+    root = nums[end]
+    i = start
+    while i < end:
+        if nums[i] > root:
+            break
+        i += 1
+    gap = i
+    while i < end:
+        if nums[i] < root:
+            return False
+        i += 1
+    left = is_post_order(nums, start, gap-1)
+    right = is_post_order(nums, gap, end-1)
+    return left and right
 
 
 if __name__ == '__main__':
-    print(is_post_order([5, 7, 6, 9, 11, 10, 8]))
+    array = [5, 7, 6, 9, 11, 10, 8]
+    # array = [7, 4, 6, 5]
+    print(is_post_order(array, 0, len(array)-1))
