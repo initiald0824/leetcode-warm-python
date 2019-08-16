@@ -9,7 +9,17 @@
 
 
 def get_continuous_max_sum(nums):
-    pass
+    if not nums:
+        return None
+    max_sum = 0
+    sum_val = 0
+    for num in nums:
+        sum_val += num
+        if sum_val < 0:
+            sum_val = 0
+        if sum_val > max_sum:
+            max_sum = sum_val
+    return max_sum
 
 
 if __name__ == '__main__':
