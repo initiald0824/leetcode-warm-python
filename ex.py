@@ -5,6 +5,4 @@
 
 
 if __name__ == '__main__':
-    l = [3, 4, 2, 0]
-    l.remove(2)
-    print(l)
+    print([False]*10)
