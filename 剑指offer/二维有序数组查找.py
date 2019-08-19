@@ -19,7 +19,7 @@ def find_target(target, array):
     if m > 0 and n > 0:
         row = 0
         col = n - 1
-        while row < m and col < n:
+        while row < m and col > 0:
             if array[row][col] == target:
                 return True
             elif array[row][col] < target:
